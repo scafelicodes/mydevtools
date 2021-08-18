@@ -1,48 +1,50 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var rename = require('gulp-rename');
+var gulp = require("gulp");
+var sass = require("gulp-sass")(require("sass"));
+var rename = require("gulp-rename");
 
 /*
- * Variables
+ * VARIÁVEIS
  */
-// Sass Source
-var scssFiles = './src/main.scss';
+// ARQUIVO SASS PRINCIPAL
+var scssFiles = "./src/main.scss";
 
-// CSS destination
-var cssDest = './css';
+// DESTINO DOS ARQUIVOS .CSS
+var cssDest = "./css";
 
-// Options for development
+// OPÇÕES PARA DESENVOLVIMENTO
 var sassDevOptions = {
-  outputStyle: 'expanded'
-}
+  outputStyle: "expanded",
+};
 
-// Options for production
+// OPÇÕES PARA PRODUÇÃO
 var sassProdOptions = {
-  outputStyle: 'compressed'
-}
+  outputStyle: "compressed",
+};
 
 /*
- * Tasks
+ * TAREFAS
  */
-// Task 'sassdev' - Run with command 'gulp sassdev'
-gulp.task('sassdev', function() {
-  return gulp.src(scssFiles)
-    .pipe(sass(sassDevOptions).on('error', sass.logError))
+// TAREFA 'sassdev' - RODE O COMANDO 'gulp sassdev'
+gulp.task("sassdev", function () {
+  return gulp
+    .src(scssFiles)
+    .pipe(sass(sassDevOptions).on("error", sass.logError))
     .pipe(gulp.dest(cssDest));
 });
 
-// Task 'sassprod' - Run with command 'gulp sassprod'
-gulp.task('sassprod', function() {
-  return gulp.src(scssFiles)
-    .pipe(sass(sassProdOptions).on('error', sass.logError))
-    .pipe(rename('main.min.css'))
+// TAREFA 'sassprod' - RODE COM O COMANDO 'gulp sassprod'
+gulp.task("sassprod", function () {
+  return gulp
+    .src(scssFiles)
+    .pipe(sass(sassProdOptions).on("error", sass.logError))
+    .pipe(rename("main.min.css"))
     .pipe(gulp.dest(cssDest));
 });
 
-// Task 'watch' - Run with command 'gulp watch'
-gulp.task('watch', function() {
-  gulp.watch(scssFiles, gulp.parallel('sassdev','sassprod'));
+// TAREFA 'watch' - RODE COM O COMANDO 'gulp watch'
+gulp.task("watch", function () {
+  gulp.watch(scssFiles, gulp.parallel("sassdev", "sassprod"));
 });
 
-// Default task - Run with command 'gulp'
-gulp.task('default', gulp.parallel('sassdev','sassprod','watch'));
+// TAREFA PADRÃO - RODE COM O COMANDO 'gulp'
+gulp.task("default", gulp.parallel("sassdev", "sassprod", "watch"));
