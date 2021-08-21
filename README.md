@@ -26,13 +26,9 @@ npm install --save-dev gulp
 node_modules
 ```
 
-- Instale o gulp-sass para compilarmos o nosso arquivo de estilização e minificá-lo:
+- Instale o gulp-sass e o gulp-rename para compilarmos o nosso arquivo de estilização, minificá-lo e adcioná-lo na pasta /css:
 ```sh
-npm install --save-dev gulp-sass
-```
-- Em seguida, instale o gulp-rename para renomear o arquivo gerado, pois o gulp-sass cria um arquivo com o mesmo nome da origem.
-```sh
-npm install --save-dev gulp-rename
+npm install --save-dev gulp-sass gulp-rename
 ```
 
 Rode o comando gulp e veja a mágica acontecer:
